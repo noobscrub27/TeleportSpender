@@ -1,0 +1,14 @@
+{
+  "Author": "noobscrub",
+  "Name": "Teleport Tracker",
+  "Punchline": "It's cheaper to use the ferry you know.",
+  "Description": "Ever wanted to know exactly how much gil you spend on teleports? Too bad, now you do.",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "gil",
+	"teleport",
+	"turmoil",
+    "plugin",
+	"cerana",
+  ]
+}
