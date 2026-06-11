@@ -1,12 +1,15 @@
-[	
+[
 	{
-	  "Author": "noobscrub",
-	  "Name": "Teleport Tracker",
-	  "Punchline": "It's cheaper to use the ferry you know.",
-	  "Description": "Ever wanted to know exactly how much gil you spend on teleports? Too bad, now you do.",
-	  "ApplicableVersion": "any",
-	  "AssemblyVersion": "0.1.0",
-	  "RepoUrl": "https://github.com/noobscrub27/TeleportSpender",
-	  "DownloadLinkInstall": "https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip",
-	}
+	Author: 'noobscrub',
+	Name: 'Teleport Tracker',
+	Description: 'Ever wanted to know exactly how much gil you spend on teleports? No? Too bad, now you do.',
+	InternalName: 'TeleportCounter',
+	AssemblyVersion: '0.1.0',
+	TestingAssemblyVersion: null,
+	RepoUrl: 'https://github.com/noobscrub27/TeleportSpender',
+	ApplicableVersion: 'any',
+	DalamudApiLevel: 15,
+	Punchline: 'It's cheaper to use the ferry you know.',
+	DownloadLinkInstall: 'https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip',
+	},
 ]
