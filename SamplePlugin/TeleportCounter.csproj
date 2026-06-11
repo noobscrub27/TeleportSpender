@@ -12,5 +12,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
+    <Content Include="TeleportPlugin.json" />
   </ItemGroup>
 </Project>
