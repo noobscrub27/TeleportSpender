@@ -9,6 +9,8 @@
 		"TestingAssemblyVersion":null,
 		"RepoUrl":"https://github.com/noobscrub27/TeleportSpender",
 		"DownloadLinkInstall": "https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip",
+		"DownloadLinkTesting": "https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip",
+		"DownloadLinkUpdate": "https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip",
 		"Tags": [
 			"teleport",
 			"tracker",
