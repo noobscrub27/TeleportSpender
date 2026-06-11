@@ -4,7 +4,7 @@
 	  "Name": "Teleport Tracker",
 	  "Punchline": "It's cheaper to use the ferry you know.",
 	  "Description": "Ever wanted to know exactly how much gil you spend on teleports? Too bad, now you do.",
-	  "ApplicableVersion": 15,
+	  "ApplicableVersion": "any",
 	  "AssemblyVersion": "0.1.0",
 	  "RepoUrl": "https://github.com/noobscrub27/TeleportSpender",
 	  "DownloadLinkInstall": "https://github.com/noobscrub27/TeleportSpender/releases/download/0.1.0/TeleportTracker.zip",
