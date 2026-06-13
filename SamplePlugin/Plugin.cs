@@ -111,7 +111,10 @@ public sealed class Plugin : IDalamudPlugin
             var homeWorldName = PlayerState.HomeWorld.Value.Name.ToString();
             if (homeWorldName == null | characterName == null)
             {
-                Log.Information($"==={PluginInterface.Manifest.Name}: could not get character name.===");
+                if (Configuration.DebugLogging)
+                {
+                    Log.Information($"==={PluginInterface.Manifest.Name}: could not get character name.===");
+                }
                 return "none";
             }
             return $"{characterName}@{homeWorldName}";
@@ -126,7 +129,10 @@ public sealed class Plugin : IDalamudPlugin
     private void onCastTeleport(AgentEvent type, AgentArgs args)
     {
         lastTeleportCast = DateTime.Now;
-        // Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} is teleporting...===");
+        if (Configuration.DebugLogging)
+        {
+            Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} is teleporting... (teleport check 1/3)===");
+        }
     }
     public void onTeleport(AgentEvent type, AgentArgs args)
     {
@@ -134,7 +140,18 @@ public sealed class Plugin : IDalamudPlugin
         if (validTimeDifference(now, lastTeleportCast, Configuration.teleportTime)) {
             lastTeleportAction = now;
         }
-        // Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} teleported!===");
+        if (Configuration.DebugLogging)
+        {
+            if (lastTeleportAction == now)
+            {
+                Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} teleported! (teleport check 2/3)===");
+            }
+            else
+            {
+                Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} teleported! (no teleport check)===");
+            }
+            
+        }
     }
     private void onChatMessage(IHandleableChatMessage message)
     {
@@ -149,9 +166,12 @@ public sealed class Plugin : IDalamudPlugin
             int gilSpent = 0;
             if (int.TryParse(gilSpentString, out gilSpent)) {
                 onGilSpent(gilSpent);
-                // Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} spent {gilSpent} gil.===");
+                if (Configuration.DebugLogging)
+                {
+                    Log.Information($"==={PluginInterface.Manifest.Name}: {getCharacterIdentifer()} spent {gilSpent} gil.===");
+                }
             }
-            else
+            else if (Configuration.DebugLogging)
             {
                 Log.Information($"==={PluginInterface.Manifest.Name}: could not determine how much gil was spent.===");
             }        
@@ -211,6 +231,10 @@ public sealed class Plugin : IDalamudPlugin
                     resultStringBuilder.Append($" spent {gil:n0} gil on a teleport.");
                     var resultSeString = resultStringBuilder.ToReadOnlySeString();
                     allTeleportTexts.Insert(0, resultSeString);
+                    if (Configuration.DebugLogging)
+                    {
+                        Log.Information($"==={PluginInterface.Manifest.Name}: Spent gil saved. (teleport check 3/3)===");
+                    }
                 }
             }
         }
