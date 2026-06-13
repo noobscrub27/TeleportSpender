@@ -1,16 +1,17 @@
 using Dalamud.Game.Agent;
 using Dalamud.Game.Agent.AgentArgTypes;
 using Dalamud.Game.Chat;
+using Dalamud.Game.Command;
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
-using System;
-using TeleportCounter.Windows;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using Lumina.Text.ReadOnly;
 using Lumina.Text;
+using Lumina.Text.ReadOnly;
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using TeleportCounter.Windows;
 
 namespace TeleportCounter;
 
@@ -18,12 +19,15 @@ public sealed class Plugin : IDalamudPlugin
 {
     [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
     [PluginService] internal static ITextureProvider TextureProvider { get; private set; } = null!;
+    [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
     [PluginService] internal static IClientState ClientState { get; private set; } = null!;
     [PluginService] internal static IPlayerState PlayerState { get; private set; } = null!;
     [PluginService] internal static IDataManager DataManager { get; private set; } = null!;
     [PluginService] internal static IPluginLog Log { get; private set; } = null!;
     [PluginService] internal static IChatGui Chat { get; private set; } = null!;
     [PluginService] internal static IAgentLifecycle AgentLifeCycle { get; private set; } = null!;
+
+    private const string CommandName = "/tptracker";
 
     public Configuration Configuration { get; init; }
 
@@ -44,6 +48,11 @@ public sealed class Plugin : IDalamudPlugin
 
         WindowSystem.AddWindow(MainWindow);
         WindowSystem.AddWindow(ConfigWindow);
+
+        CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
+        {
+            HelpMessage = "Toggles the Teleport Tracker main window."
+        });
 
         // Tell the UI system that we want our windows to be drawn through the window system
         PluginInterface.UiBuilder.Draw += WindowSystem.Draw;
@@ -87,6 +96,11 @@ public sealed class Plugin : IDalamudPlugin
         ConfigWindow.Dispose();
         MainWindow.Dispose();
 
+    }
+    private void OnCommand(string command, string args)
+    {
+        // In response to the slash command, toggle the display status of our main ui
+        MainWindow.Toggle();
     }
     // unique character identifier: WorldnameFirstnameLastName
     public string getCharacterIdentifer()
